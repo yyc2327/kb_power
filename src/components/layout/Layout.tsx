@@ -25,7 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <main style={{
           flex: 1,
           overflow: 'auto',
-          padding: '24px'
+          backgroundColor: '#f5f7fa'
         }}>
           {children}
         </main>

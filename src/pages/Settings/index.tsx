@@ -2,56 +2,120 @@ import React from 'react';
 
 export const Settings: React.FC = () => {
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">系统设置</h1>
-        <p className="text-gray-500 mt-2">管理你的账户和系统偏好设置</p>
+    <div style={{ padding: '24px', maxWidth: '800px' }}>
+      <div style={{ marginBottom: '24px' }}>
+        <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#303133', margin: 0 }}>
+          系统设置
+        </h1>
+        <p style={{ fontSize: '14px', color: '#909399', marginTop: '8px' }}>
+          管理你的账户和系统偏好设置
+        </p>
       </div>
 
-      <div className="space-y-4 max-w-2xl">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="font-semibold mb-4">个人信息</h2>
-          <div className="space-y-4">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{
+          backgroundColor: '#fff',
+          borderRadius: '8px',
+          padding: '24px',
+          border: '1px solid #ebeef5',
+          boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.03)'
+        }}>
+          <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#303133', margin: '0 0 16px 0' }}>
+            个人信息
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">用户名</label>
+              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#606266', marginBottom: '8px' }}>
+                用户名
+              </label>
               <input 
                 type="text" 
                 defaultValue="管理员"
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #dcdfe6',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  outline: 'none'
+                }}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
+              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#606266', marginBottom: '8px' }}>
+                邮箱
+              </label>
               <input 
                 type="email" 
                 defaultValue="admin@example.com"
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #dcdfe6',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  outline: 'none'
+                }}
               />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="font-semibold mb-4">通知设置</h2>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-sm font-medium">邮件通知</div>
-                <div className="text-xs text-gray-500">接收重要更新的邮件通知</div>
+        <div style={{
+          backgroundColor: '#fff',
+          borderRadius: '8px',
+          padding: '24px',
+          border: '1px solid #ebeef5',
+          boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.03)'
+        }}>
+          <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#303133', margin: '0 0 16px 0' }}>
+            通知设置
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[
+              { label: '邮件通知', desc: '接收重要更新的邮件通知' },
+              { label: '推送通知', desc: '浏览器推送通知' },
+              { label: '审核提醒', desc: '有待审核内容时提醒' },
+            ].map((item, index) => (
+              <div 
+                key={index}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 0',
+                  borderBottom: index < 2 ? '1px solid #f5f7fa' : 'none'
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: '14px', fontWeight: '500', color: '#303133' }}>
+                    {item.label}
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#909399', marginTop: '4px' }}>
+                    {item.desc}
+                  </div>
+                </div>
+                <input 
+                  type="checkbox" 
+                  defaultChecked 
+                  style={{ width: '20px', height: '20px', cursor: 'pointer' }}
+                />
               </div>
-              <input type="checkbox" defaultChecked className="w-5 h-5" />
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-sm font-medium">推送通知</div>
-                <div className="text-xs text-gray-500">浏览器推送通知</div>
-              </div>
-              <input type="checkbox" defaultChecked className="w-5 h-5" />
-            </div>
+            ))}
           </div>
         </div>
 
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+        <button style={{
+          backgroundColor: '#409eff',
+          color: '#fff',
+          padding: '12px 24px',
+          borderRadius: '8px',
+          border: 'none',
+          fontSize: '14px',
+          cursor: 'pointer',
+          fontWeight: '500',
+          alignSelf: 'flex-start'
+        }}>
           保存更改
         </button>
       </div>
