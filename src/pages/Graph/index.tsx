@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Network, Code, Share2, FileText, Database, Activity } from 'lucide-react';
+import { Network, Code, Share2, FileText, Activity } from 'lucide-react';
 
 const graphTypes = [
   {

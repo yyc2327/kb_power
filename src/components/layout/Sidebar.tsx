@@ -1,35 +1,17 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  ElMenu,
-  ElMenuItem,
-  ElIcon,
-  ElAvatar
-} from 'element-plus';
-import { 
-  Dashboard, 
-  List, 
-  Share, 
-  User, 
-  Setting,
-  OfficeBuilding
-} from '@element-plus/icons-vue';
+
+const menuItems = [
+  { path: '/', label: '仪表盘' },
+  { path: '/domains', label: '知识域管理' },
+  { path: '/graph', label: '知识图谱' },
+  { path: '/collaboration', label: '协作空间' },
+  { path: '/settings', label: '系统设置' },
+];
 
 export const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const menuItems = [
-    { path: '/', label: '仪表盘', icon: Dashboard },
-    { path: '/domains', label: '知识域管理', icon: List },
-    { path: '/graph', label: '知识图谱', icon: Share },
-    { path: '/collaboration', label: '协作空间', icon: User },
-    { path: '/settings', label: '系统设置', icon: Setting },
-  ];
-
-  const handleMenuSelect = (index: string) => {
-    navigate(index);
-  };
 
   return (
     <div style={{
@@ -40,17 +22,10 @@ export const Sidebar: React.FC = () => {
       display: 'flex',
       flexDirection: 'column'
     }}>
-      {/* Logo 区域 */}
       <div style={{
         padding: '20px',
-        borderBottom: '1px solid #e4e7ed',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px'
+        borderBottom: '1px solid #e4e7ed'
       }}>
-        <ElIcon size={32} color="#409eff">
-          <OfficeBuilding />
-        </ElIcon>
         <h1 style={{
           fontSize: '18px',
           fontWeight: '600',
@@ -61,62 +36,29 @@ export const Sidebar: React.FC = () => {
         </h1>
       </div>
 
-      {/* 菜单 */}
       <div style={{ flex: 1, overflow: 'auto', padding: '12px 0' }}>
-        <ElMenu
-          defaultActive={location.pathname}
-          onSelect={handleMenuSelect}
-          style={{ border: 'none' }}
-        >
-          {menuItems.map((item) => (
-            <ElMenuItem key={item.path} index={item.path}>
-              <ElIcon size={20}>
-                {React.createElement(item.icon)}
-              </ElIcon>
-              <span>{item.label}</span>
-            </ElMenuItem>
-          ))}
-        </ElMenu>
-      </div>
-
-      {/* 用户信息 */}
-      <div style={{
-        padding: '16px',
-        borderTop: '1px solid #e4e7ed',
-        backgroundColor: '#fafafa'
-      }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          padding: '12px',
-          backgroundColor: '#fff',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
-        }}>
-          <ElAvatar 
-            size={40} 
-            style={{ backgroundColor: '#409eff', flexShrink: 0 }}
-          >
-            管理员
-          </ElAvatar>
-          <div>
-            <div style={{
-              fontSize: '14px',
-              fontWeight: '500',
-              color: '#303133',
-              marginBottom: '2px'
-            }}>
-              管理员
+        {menuItems.map((item) => {
+          const isActive = location.pathname === item.path;
+          return (
+            <div
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              style={{
+                padding: '12px 20px',
+                margin: '4px 8px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                backgroundColor: isActive ? '#ecf5ff' : 'transparent',
+                color: isActive ? '#409eff' : '#606266',
+                fontWeight: isActive ? '500' : '400',
+                fontSize: '14px',
+                transition: 'all 0.3s'
+              }}
+            >
+              {item.label}
             </div>
-            <div style={{
-              fontSize: '12px',
-              color: '#909399'
-            }}>
-              admin@example.com
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

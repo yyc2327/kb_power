@@ -1,22 +1,6 @@
 import React from 'react';
-import { 
-  ElInput,
-  ElButton,
-  ElIcon,
-  ElBadge,
-  ElAvatar,
-  ElDropdown,
-  ElDropdownMenu,
-  ElDropdownItem
-} from 'element-plus';
-import { Search, Bell, Setting, User as UserIcon, SwitchButton } from '@element-plus/icons-vue';
 
-interface HeaderProps {
-  onMenuToggle?: () => void;
-  showMenuToggle?: boolean;
-}
-
-export const Header: React.FC<HeaderProps> = ({ onMenuToggle, showMenuToggle = true }) => {
+export const Header: React.FC = () => {
   return (
     <div style={{
       height: '64px',
@@ -25,79 +9,37 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle, showMenuToggle = t
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0 24px',
-      gap: '16px'
+      padding: '0 24px'
     }}>
-      {/* 左侧区域 */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
-        {showMenuToggle && (
-          <ElButton
-            text
-            onClick={onMenuToggle}
-            style={{ fontSize: '20px' }}
-          >
-            <span style={{ fontSize: '20px' }}>☰</span>
-          </ElButton>
-        )}
-        
-        <ElInput
+        <input
+          type="text"
           placeholder="搜索知识..."
-          prefixIcon={<Search />}
-          style={{ maxWidth: '400px', width: '100%' }}
+          style={{
+            maxWidth: '400px',
+            width: '100%',
+            padding: '8px 12px',
+            border: '1px solid #dcdfe6',
+            borderRadius: '4px',
+            outline: 'none'
+          }}
         />
       </div>
 
-      {/* 右侧区域 */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        {/* 通知 */}
-        <ElBadge value={3} :max="99" style={{ cursor: 'pointer' }}>
-          <ElButton text>
-            <ElIcon size={20} color="#606266">
-              <Bell />
-            </ElIcon>
-          </ElButton>
-        </ElBadge>
-
-        {/* 用户下拉菜单 */}
-        <ElDropdown trigger="click">
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            cursor: 'pointer',
-            padding: '4px 8px',
-            borderRadius: '8px',
-            transition: 'background-color 0.3s'
-          }}>
-            <ElAvatar 
-              size={36}
-              style={{ backgroundColor: '#409eff', flexShrink: 0 }}
-            >
-              管理员
-            </ElAvatar>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ fontSize: '14px', color: '#303133' }}>管理员</span>
-              <span style={{ fontSize: '12px', color: '#909399' }}>▼</span>
-            </div>
-          </div>
-          
-          <template #dropdown>
-            <ElDropdownMenu>
-              <ElDropdownItem>
-                <ElIcon style={{ marginRight: '8px' }}><UserIcon /></ElIcon>
-                个人中心
-              </ElDropdownItem>
-              <ElDropdownItem>
-                <ElIcon style={{ marginRight: '8px' }}><Setting /></ElIcon>
-                账户设置
-              </ElDropdownItem>
-              <ElDropdownItem divided>
-                <ElIcon style={{ marginRight: '8px' }}><SwitchButton /></ElIcon>
-                退出登录
-              </ElDropdownItem>
-            </ElDropdownMenu>
-          </template>
-        </ElDropdown>
+        <div style={{
+          width: '36px',
+          height: '36px',
+          borderRadius: '50%',
+          backgroundColor: '#409eff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fff',
+          fontSize: '14px'
+        }}>
+          管理员
+        </div>
       </div>
     </div>
   );
