@@ -27,7 +27,9 @@ module.exports = {
       { argsIgnorePattern: '^_' },
     ],
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    '@typescript-eslint/no-non-null-assertion': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import/order': [
       'error',
       {
@@ -50,5 +52,10 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'eqeqeq': ['error', 'always'],
     'curly': ['error', 'all'],
+    'max-depth': ['error', 4],
+    'complexity': ['error', 10],
+    'max-statements': ['error', 50],
+    'max-lines': ['error', { max: 100, skipBlankLines: true, skipComments: true }],
+    'max-params': ['error', 3],
   },
 }
